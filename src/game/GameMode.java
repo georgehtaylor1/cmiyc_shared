@@ -1,3 +1,8 @@
 package game;
 
-public enum GameMode { LONG, SHORT; }
+/**
+ * Represents the type of game mode
+ */
+public enum GameMode {
+    LONG, SHORT;
+}

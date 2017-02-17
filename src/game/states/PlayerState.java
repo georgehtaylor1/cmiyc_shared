@@ -1,3 +1,8 @@
 package game.states;
 
-public enum PlayerState { NORMAL, CAUGHT, STUCK; }
+/**
+ * Represents the current state of the player
+ */
+public enum PlayerState {
+    NORMAL, CAUGHT, STUCK;
+}

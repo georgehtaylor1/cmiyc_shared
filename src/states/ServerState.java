@@ -1,3 +1,8 @@
 package states;
 
-public enum ServerState { STARTING, STARTED, STOPPING, STOPPED; }
+/**
+ * Represents the state of the client
+ */
+public enum ServerState {
+    STARTING, STARTED, STOPPING, STOPPED;
+}

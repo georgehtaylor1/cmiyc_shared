@@ -1,3 +1,8 @@
 package states;
 
-public enum ClientState { DISCONNECTED, CONNECTED, FINDING, PREGAME, PLAYING, POSTGAME; }
+/**
+ * Represents the state of the client
+ */
+public enum ClientState {
+    DISCONNECTED, CONNECTED, FINDING, PREGAME, PLAYING, POSTGAME;
+}
