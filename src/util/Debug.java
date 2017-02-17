@@ -2,6 +2,10 @@ package util;
 
 public class Debug {
 
+	/**
+	 * Print the line number, class, message and method to the output
+	 * @param _message The message to be printed
+	 */
 	public static void say( String _message ) {
 	
 		Exception exception = new Exception();
