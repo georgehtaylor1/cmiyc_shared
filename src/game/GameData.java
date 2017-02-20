@@ -1,18 +1,19 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
-import constants.Commands.Key;
 import game.states.GameState;
-import game.util.Position;
 
 public class GameData {
 
     public GameState state;
     public GameMode mode;
 
-    public ArrayList<Player> players;
+    public ConcurrentHashMap<String, Player> players;
     public ArrayList<Treasure> treasures;
     public ArrayList<Obstacle> obstacles;
     public ArrayList<Camera> cameras;
@@ -23,7 +24,7 @@ public class GameData {
     public GameData() {
         this.state = GameState.OFFLINE;
 
-        this.players = new ArrayList<Player>();
+        this.players = new ConcurrentHashMap<String, Player>();
         this.treasures = new ArrayList<Treasure>();
         this.obstacles = new ArrayList<Obstacle>();
         this.cameras = new ArrayList<Camera>();
@@ -57,13 +58,22 @@ public class GameData {
             return true;
         } else {
             int existingPerFaction = 0;
-            ArrayList<Player> tempPlayers = new ArrayList<Player>(this.players);
+            ConcurrentHashMap<String, Player> tempPlayers = new ConcurrentHashMap<String, Player>(this.players);
 
-            for (Player connectedPlayer : tempPlayers) {
-                if (connectedPlayer.faction == player.faction) {
+            
+            Iterator<Entry<String, Player>> i = tempPlayers.entrySet().iterator();
+
+    		while (i.hasNext()) {
+
+    			Map.Entry<String, Player> pair = (Map.Entry<String, Player>) i.next();
+
+    			Player tplayer = pair.getValue();
+    			
+    			if (tplayer.faction == player.faction) {
                     existingPerFaction++;
                 }
-            }
+
+    		}
 
             return (existingPerFaction < limitPerFaction);
         }
