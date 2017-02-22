@@ -1,5 +1,10 @@
 package util;
 
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+
+import game.Player;
 import game.constants.GameSettings;
 import game.util.Position;
 
@@ -46,7 +51,7 @@ public class Maths {
 	 *            The position of the sound
 	 * @return The proportion of the volume of the sound in the left ear, between 0 and 1
 	 */
-	public static double getLeftVolume(Position myPos, Position soundPos) {
+	public static double getLeftVolumeProportion(Position myPos, Position soundPos) {
 		double listeningRadius = GameSettings.Player.listeningRadius;
 		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
 				* (-0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
@@ -61,10 +66,50 @@ public class Maths {
 	 *            The position of the sound
 	 * @return The proportion of the volume of the sound in the right ear, between 0 and 1
 	 */
-	public static double getRightVolume(Position myPos, Position soundPos) {
+	public static double getRightVolumeProportion(Position myPos, Position soundPos) {
 		double listeningRadius = GameSettings.Player.listeningRadius;
 		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
 				* (0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
+	}
+
+	/**
+	 * Get the volume in the left ear
+	 * 
+	 * @param myPos
+	 *            The position of the player to whom the volume applies
+	 * @param players
+	 *            The rest of the players in the game
+	 * @return The calculated volume in the left ear
+	 */
+	public static double getLeftVolume(Position myPos, ConcurrentHashMap<String, Player> players) {
+		double totalVolume = 0;
+		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
+		while (i.hasNext()) {
+			Player p = i.next().getValue();
+			if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
+				totalVolume += getLeftVolumeProportion(myPos, p.position) * p.volume;
+		}
+		return totalVolume;
+	}
+
+	/**
+	 * Get the volume in the right ear
+	 * 
+	 * @param myPos
+	 *            The position of the player to whom the volume applies
+	 * @param players
+	 *            The rest of the players in the game
+	 * @return The calculated volume in the right ear
+	 */
+	public static double getRightVolume(Position myPos, ConcurrentHashMap<String, Player> players) {
+		double totalVolume = 0;
+		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
+		while (i.hasNext()) {
+			Player p = i.next().getValue();
+			if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
+				totalVolume += getRightVolumeProportion(myPos, p.position) * p.volume;
+		}
+		return totalVolume;
 	}
 
 	/**
