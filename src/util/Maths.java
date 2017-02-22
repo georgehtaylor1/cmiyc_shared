@@ -67,4 +67,19 @@ public class Maths {
 				* (0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
 	}
 
+	/**
+	 * Get the position dictated by the projection of the given position over distance d at angle a
+	 * 
+	 * @param p
+	 *            The position to be projected from
+	 * @param d
+	 *            The distance of the projection
+	 * @param a
+	 *            The angle of the projection
+	 * @return The position of the projected image
+	 */
+	public static Position project(Position p, double d, double a) {
+		return new Position(p.x + (Math.cos(a) * d), p.y + (Math.sin(a) * d));
+	}
+
 }
