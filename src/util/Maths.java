@@ -72,16 +72,20 @@ public class Maths {
 	 * @return The angle between the points
 	 */
 	public static double angle(Position p1, Position p2) {
-		return Math.atan((p1.y - p2.y) / (p1.x - p2.x));
+		return angle(p1.x, p1.y, p2.x, p2.y);
 	}
 
-
 	/**
-	 * Method to get the angle from a point to the player
-	 * @param p1X player X
-	 * @param p1Y player Y
-	 * @param p2X 
+	 * Method to get the angle between two points
+	 * 
+	 * @param p1X
+	 *            position 1 X
+	 * @param p1Y
+	 *            position 1 Y
+	 * @param p2X
+	 *            position 2 X
 	 * @param p2Y
+	 *            position 2 Y
 	 * @return Angle in radians
 	 */
 	public static double angle(double p1X, double p1Y, double p2X, double p2Y) {
