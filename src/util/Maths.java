@@ -153,13 +153,16 @@ public class Maths {
 	 *            The rest of the players in the game
 	 * @return The calculated volume in the left ear
 	 */
-	public static double getLeftVolume(Position myPos, ConcurrentHashMap<String, Player> players) {
+	public static double getLeftVolume(Position myPos, String myName, ConcurrentHashMap<String, Player> players) {
 		double totalVolume = 0;
 		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
 		while (i.hasNext()) {
-			Player p = i.next().getValue();
-			if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
-				totalVolume += getLeftVolumeProportion(myPos, p.position) * p.volume;
+			Entry<String, Player> e = i.next();
+			if (e.getKey() != myName) {
+				Player p = e.getValue();
+				if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
+					totalVolume += getLeftVolumeProportion(myPos, p.position) * p.volume;
+			}
 		}
 		return totalVolume;
 	}
@@ -173,13 +176,16 @@ public class Maths {
 	 *            The rest of the players in the game
 	 * @return The calculated volume in the right ear
 	 */
-	public static double getRightVolume(Position myPos, ConcurrentHashMap<String, Player> players) {
+	public static double getRightVolume(Position myPos, String myName, ConcurrentHashMap<String, Player> players) {
 		double totalVolume = 0;
 		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
 		while (i.hasNext()) {
-			Player p = i.next().getValue();
-			if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
-				totalVolume += getRightVolumeProportion(myPos, p.position) * p.volume;
+			Entry<String, Player> e = i.next();
+			if (e.getKey() != myName) {
+				Player p = e.getValue();
+				if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
+					totalVolume += getRightVolumeProportion(myPos, p.position) * p.volume;
+			}
 		}
 		return totalVolume;
 	}
