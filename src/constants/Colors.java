@@ -1,6 +1,6 @@
 package constants;
 
-import java.awt.Color;
+import javafx.scene.paint.Color;
 
 /**
  * @author Denis Makula
@@ -8,27 +8,28 @@ import java.awt.Color;
  **/
 public class Colors {
 
-    public static Color fog = new Color(56, 60, 64, 255);
-    public static Color arena = new Color(105, 106, 110, 255);
-    public static Color outerArena = new Color(51, 54, 58);
-    public static Color playerShadow = new Color(0, 0, 0, 170);
-    public static Color activeSecurity = new Color(68, 179, 128);
-    public static Color stuckSecurity = new Color(105, 106, 110);
-    public static Color activeThief = new Color(239, 73, 72);
-    public static Color treasure = new Color(249, 164, 29);
-    public static Color treasureShadow = new Color(105, 106, 110);
+    public static Color fog = Color.rgb(56, 60, 64, 1);
+    public static Color arena = Color.rgb(105, 106, 110, 1);
+    public static Color outerArena = Color.rgb(51, 54, 58, 1);
+    public static Color playerShadow = Color.rgb(0, 0, 0, 1);
+    public static Color activeSecurity = Color.rgb(68, 179, 128, 1);
+    public static Color stuckSecurity = Color.rgb(105, 106, 110, 1);
+    public static Color activeThief = Color.rgb(239, 73, 72, 1);
+    public static Color treasure = Color.rgb(249, 164, 29, 1);
+    public static Color treasureShadow = Color.rgb(105, 106, 110, 1);
+    
+    
+    public static Color lightest = Color.rgb(105, 106, 110, 1);
+    public static Color lighter = Color.rgb(56, 60, 64, 1);
+    public static Color normal = Color.rgb(51, 54, 58, 1);
+    public static Color darker = Color.rgb(45, 47, 51, 1);
+    public static Color darkest = Color.rgb(36, 38, 41, 1);
 
-    public static Color lightest = new Color(105, 106, 110);
-    public static Color lighter = new Color(56, 60, 64);
-    public static Color normal = new Color(51, 54, 58);
-    public static Color darker = new Color(45, 47, 51);
-    public static Color darkest = new Color(36, 38, 41);
-
-    public static Color green = new Color(68, 179, 128);
-    public static Color yellow = new Color(249, 164, 29);
-    public static Color red = new Color(239, 73, 72, 255);
-    public static Color blue = new Color(113, 136, 218);
-    public static Color black = new Color(0, 0, 0);
-    public static Color white = new Color(255, 255, 255);
+    public static Color green1 = Color.rgb(68, 179, 128, 1);
+    public static Color yellow = Color.rgb(249, 164, 29, 1);
+    public static Color red =  Color.rgb(239, 73, 72, 1);
+    public static Color blue = Color.rgb(113, 136, 218, 1);
+    public static Color black = Color.rgb(0, 0, 0, 1);
+    public static Color white = Color.rgb(255, 255, 255, 1);
 
 }
