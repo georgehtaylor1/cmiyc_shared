@@ -16,39 +16,6 @@ import game.util.Position;
  */
 public class Maths {
 
-	private static double[] sin = new double[360];
-
-	/**
-	 * Initialise the array of sine values
-	 */
-	public static void initTrigApproximations() {
-		for (int i = 0; i < 360; i++) {
-			sin[i] = Math.sin(i);
-		}
-	}
-
-	/**
-	 * Get the approximate sine value for the given angle
-	 * 
-	 * @param angle
-	 *            The angle to find the sine value of
-	 * @return The approximate result of applying sine to the value
-	 */
-	public static double approxSin(int angle) {
-		return sin[Math.floorMod(angle, 360)];
-	}
-
-	/**
-	 * Get the approximate cosine value for the given angle
-	 * 
-	 * @param angle
-	 *            The angle to find the cosine value of
-	 * @return The approximate result of applying cosine to the value
-	 */
-	public static double approxCos(int angle) {
-		return approxSin(angle + 90);
-	}
-
 	/**
 	 * Get the Euclidian distance between two objects
 	 * 
@@ -126,7 +93,7 @@ public class Maths {
 	public static double getLeftVolumeProportion(Position myPos, Position soundPos) {
 		double listeningRadius = GameSettings.Player.listeningRadius;
 		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
-				* (-0.5 * (approxCos((int) angle(myPos, soundPos)) + 1));
+				* (-0.5 * (Math.sin(angle(myPos, soundPos)) + 1));
 	}
 
 	/**
@@ -141,7 +108,7 @@ public class Maths {
 	public static double getRightVolumeProportion(Position myPos, Position soundPos) {
 		double listeningRadius = GameSettings.Player.listeningRadius;
 		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
-				* (0.5 * (approxCos((int) angle(myPos, soundPos)) + 1));
+				* (0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
 	}
 
 	/**
@@ -149,6 +116,8 @@ public class Maths {
 	 * 
 	 * @param myPos
 	 *            The position of the player to whom the volume applies
+	 * @param myName
+	 *            The name of the player so that it can be ignored
 	 * @param players
 	 *            The rest of the players in the game
 	 * @return The calculated volume in the left ear
@@ -172,6 +141,8 @@ public class Maths {
 	 * 
 	 * @param myPos
 	 *            The position of the player to whom the volume applies
+	 * @param myName
+	 *            The name of the player so that it can be ignored
 	 * @param players
 	 *            The rest of the players in the game
 	 * @return The calculated volume in the right ear

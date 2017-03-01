@@ -2,6 +2,9 @@ package test;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import game.Player;
@@ -10,13 +13,15 @@ import util.Maths;
 
 public class MathsTest {
 
-	Position pos1, pos2, pos3, pos4, pos5;
-	ConcurrentHashMap<String, Player> chmPlayers;
-	Player p1, p2, p3, p4, p5;
+	static Position pos1, pos2, pos3, pos4, pos5;
+	static ConcurrentHashMap<String, Player> chmPlayers;
+	static Player p1, p2, p3, p4, p5;
 
-	public void setUp() {
-
-		Maths.initTrigApproximations();
+	/**
+	 * Set up the objects to be used in the tests
+	 */
+	@BeforeClass
+	public static void setUp() {
 
 		pos1 = new Position(0, 0);
 		pos2 = new Position(0, 1);
@@ -30,6 +35,7 @@ public class MathsTest {
 		p4 = new Player("test4");
 		p5 = new Player("test5");
 
+		chmPlayers = new ConcurrentHashMap<String, Player>();
 		chmPlayers.put("key1", p1);
 		chmPlayers.put("key2", p2);
 		chmPlayers.put("key3", p3);
@@ -37,17 +43,33 @@ public class MathsTest {
 		chmPlayers.put("key5", p5);
 	}
 
-	public void tearDown() {
+	@AfterClass
+	public static void tearDown() {
 
 	}
 
+	/**
+	 * Test the distance function
+	 */
 	@Test
-	public void test() {
-
+	public void testDist() {
+		Assert.assertEquals(1.0000, Maths.dist(pos1, pos2), 0.01);
+		Assert.assertEquals(1.0000, Maths.dist(pos1, pos3), 0.01);
+		Assert.assertEquals(1.4142, Maths.dist(pos2, pos3), 0.01);
+		Assert.assertEquals(2.2361, Maths.dist(pos1, pos5), 0.01);
+		Assert.assertEquals(2.0000, Maths.dist(pos2, pos5), 0.01);
 	}
 
-	private void testDist() {
-
+	/**
+	 * Test the angle function
+	 */
+	@Test
+	public void testAngle() {
+		Assert.assertEquals(Math.PI / 2, Maths.angle(pos1, pos2), 0.1);
+		Assert.assertEquals(0, Maths.angle(pos1, pos3), 0.1);
+		Assert.assertEquals(Math.PI / 4, Maths.angle(pos1, pos4), 0.1);
+		Assert.assertEquals(0, Maths.angle(pos2, pos5), 0.1);
+		Assert.assertEquals(0.4636, Maths.angle(pos1, pos5), 0.1);
 	}
 
 }
