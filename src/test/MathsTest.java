@@ -13,7 +13,7 @@ import util.Maths;
 
 public class MathsTest {
 
-	static Position[] pos = new Position[5];
+	static Position[] pos = new Position[6];
 	static ConcurrentHashMap<String, Player> chmPlayers;
 	static Player p1, p2, p3, p4, p5;
 
@@ -23,6 +23,7 @@ public class MathsTest {
 	@BeforeClass
 	public static void setUp() {
 
+		pos[0] = new Position(3, 3);
 		pos[1] = new Position(0, 0);
 		pos[2] = new Position(0, 1);
 		pos[3] = new Position(1, 0);
@@ -79,7 +80,7 @@ public class MathsTest {
 	public void testVolumeProportions() {
 
 		Assert.assertEquals(0, Maths.getLeftVolumeProportion(pos[1], pos[2]), 0.01);
-		
+
 	}
 
 }
