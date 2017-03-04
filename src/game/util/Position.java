@@ -44,4 +44,12 @@ public class Position {
 		return Maths.dist(this, p) < 1.0;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object p) {
+		return this.x == ((Position) p).x && this.y == ((Position) p).y;
+	}
+
 }

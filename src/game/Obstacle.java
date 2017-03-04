@@ -1,6 +1,7 @@
 package game;
 
 import game.util.Position;
+import util.Maths;
 
 /**
  * @author Denis Makula Class that contains information about the walls / obstacles in game (corners and area)
@@ -62,6 +63,70 @@ public class Obstacle {
 	 */
 	public boolean contains(Position p) {
 		return p.x > topLeft.x && p.x < topRight.x && p.y >= topLeft.y && p.y <= bottomLeft.y;
+	}
+
+	/**
+	 * Get the position of the closest corner of the obstacle to the given position, offset by 45 degrees in the specified distance
+	 * 
+	 * @param p
+	 *            The position to be compared to
+	 * @param offset
+	 *            The offset to be adde to the position of the corner
+	 * @return The position of the offset from the closest corner
+	 */
+	public Position closestCornerOffset(Position p, double offset) {
+		Position minPos = closestCorner(p);
+
+		if (minPos.equals(this.topLeft)) {
+			return new Position(minPos.x - (offset * Math.cos(Math.PI / 4)),
+					minPos.y - (offset * Math.sin(Math.PI / 4)));
+		}
+
+		if (minPos.equals(this.bottomLeft)) {
+			return new Position(minPos.x - (offset * Math.cos(Math.PI / 4)),
+					minPos.y + (offset * Math.sin(Math.PI / 4)));
+		}
+
+		if (minPos.equals(this.topRight)) {
+			return new Position(minPos.x + (offset * Math.cos(Math.PI / 4)),
+					minPos.y - (offset * Math.sin(Math.PI / 4)));
+		}
+
+		return new Position(minPos.x + (offset * Math.cos(Math.PI / 4)), minPos.y + (offset * Math.sin(Math.PI / 4)));
+
+	}
+
+	/**
+	 * Get the closest corner of the obstacle to the given position
+	 * 
+	 * @param p
+	 *            The position to compare to
+	 * @return The position of the closest corner to the position
+	 */
+	public Position closestCorner(Position p) {
+		Position minPos = this.topLeft;
+		double minDist = Maths.dist(p, this.topLeft);
+
+		double blDist = Maths.dist(p, this.bottomLeft);
+		double trDist = Maths.dist(p, this.topRight);
+		double brDist = Maths.dist(p, this.bottomRight);
+
+		if (blDist < minDist) {
+			minDist = blDist;
+			minPos = this.bottomLeft;
+		}
+
+		if (trDist < minDist) {
+			minDist = trDist;
+			minPos = this.topRight;
+		}
+
+		if (brDist < minDist) {
+			minDist = brDist;
+			minPos = this.bottomRight;
+		}
+
+		return minPos;
 	}
 
 }
