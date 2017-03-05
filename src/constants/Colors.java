@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public class Colors {
 
     public static Color fog = Color.rgb(56, 60, 64, 1);
+    public static Color flashlight = Color.rgb(255, 200, 0, 0.5);
     public static Color arena = Color.rgb(105, 106, 110, 1);
     public static Color outerArena = Color.rgb(51, 54, 58, 1);
     public static Color playerShadow = Color.rgb(0, 0, 0, 1);
