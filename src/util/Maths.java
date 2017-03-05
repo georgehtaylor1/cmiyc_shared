@@ -183,7 +183,7 @@ public class Maths {
 	 *            The angle to be normalized
 	 * @return The normalized angle
 	 */
-	double normalizeAngle(double angle) {
+	public double normalizeAngle(double angle) {
 		double newAngle = angle;
 		while (newAngle <= -180)
 			newAngle += 360;
