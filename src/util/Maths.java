@@ -56,29 +56,7 @@ public class Maths {
 	 * @return Angle in radians
 	 */
 	public static double angle(double p1X, double p1Y, double p2X, double p2Y) {
-		if (p1X != p2X && p1Y != p2Y) {
-			double xdif = (p2X - p1X);
-			double ydif = (p2Y - p1Y);
-			double angle = 0; // in radians
-			angle = -Math.atan(ydif / xdif);
-			if (xdif < 0) {
-				if (ydif < 0) {
-					angle += Math.PI;
-				} else {
-					angle -= Math.PI;
-				}
-			}
-			return -angle;
-		} else if (p1X > p2X) {
-			return Math.PI;
-		} else if (p1X < p2X) {
-			return 0.0;
-		} else if (p1Y > p2Y) {
-			return -Math.PI / 2.0;
-		} else if (p1Y < p2Y) {
-			return Math.PI / 2.0;
-		}
-		return 0.0;
+		return Math.atan2(p2Y - p1Y, p2X - p1X);
 	}
 
 	/**
