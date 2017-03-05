@@ -185,10 +185,10 @@ public class Maths {
 	 */
 	public static double normalizeAngle(double angle) {
 		double newAngle = angle;
-		while (newAngle <= -180)
-			newAngle += 360;
-		while (newAngle > 180)
-			newAngle -= 360;
+		while (newAngle <= -Math.PI)
+			newAngle += 2 * Math.PI;
+		while (newAngle > Math.PI)
+			newAngle -= 2 * Math.PI;
 		return newAngle;
 	}
 
