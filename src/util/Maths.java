@@ -176,4 +176,20 @@ public class Maths {
 		return new Position(p.x + (Math.cos(a) * d), p.y + (Math.sin(a) * d));
 	}
 
+	/**
+	 * Normalize an angle so that it is between -180 and 180
+	 * 
+	 * @param angle
+	 *            The angle to be normalized
+	 * @return The normalized angle
+	 */
+	double normalizeAngle(double angle) {
+		double newAngle = angle;
+		while (newAngle <= -180)
+			newAngle += 360;
+		while (newAngle > 180)
+			newAngle -= 360;
+		return newAngle;
+	}
+
 }
