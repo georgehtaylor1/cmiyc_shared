@@ -40,8 +40,8 @@ public class Position {
 	 *            The position to compare to
 	 * @return Whehter the position being compared to is the same
 	 */
-	public boolean at(Position p) {
-		return Maths.dist(this, p) < 1.0;
+	public boolean at(Position p, double threshold) {
+		return Maths.dist(this, p) < threshold;
 	}
 
 	/* (non-Javadoc)
