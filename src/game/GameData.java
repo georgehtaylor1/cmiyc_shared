@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import game.states.GameState;
@@ -17,6 +18,8 @@ public class GameData {
     public ArrayList<Treasure> treasures;
     public ArrayList<Obstacle> obstacles;
     public ArrayList<Camera> cameras;
+    
+    public Random rand;
 
     /**
      * Create the game data object and it's members
@@ -28,6 +31,8 @@ public class GameData {
         this.treasures = new ArrayList<Treasure>();
         this.obstacles = new ArrayList<Obstacle>();
         this.cameras = new ArrayList<Camera>();
+        
+        this.rand = new Random();
     }
 
     /**
