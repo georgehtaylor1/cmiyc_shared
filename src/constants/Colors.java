@@ -18,7 +18,7 @@ public class Colors {
     public static Color activeThief = Color.rgb(239, 73, 72, 1);
     public static Color treasure = Color.rgb(249, 164, 29, 1);
     public static Color treasureShadow = Color.rgb(105, 106, 110, 1);
-    
+    public static Color thiefVision = Color.rgb(50, 50, 50, 0.5);
     
     public static Color lightest = Color.rgb(105, 106, 110, 1);
     public static Color lighter = Color.rgb(56, 60, 64, 1);
