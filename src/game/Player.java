@@ -14,7 +14,8 @@ public class Player implements Serializable {
 
 	public double speed;
 	public double battery;
-
+	public int cameras;
+	
 	public Position position;
 	public double direction;
 
@@ -37,6 +38,7 @@ public class Player implements Serializable {
 
 		this.speed = 1.5;
 		this.battery = 1;
+		this.cameras = 2;
 		this.direction = 0.0;
 		this.position = new Position();
 		this.volume = 1.0;
