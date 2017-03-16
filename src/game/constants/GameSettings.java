@@ -59,7 +59,9 @@ public class GameSettings {
 		public static final double catchRadius = 15;
 		public static final double lightRadius = 70;
 		public static final double lightArcPercentage = 13;
-
+		public static final double fullBattery = 1;
+		public static final double noBattery = 0;
+		
 		public final Color aliveColor = Colors.activeSecurity;
 		public final Color stuckColor = Colors.stuckSecurity;
 	}
