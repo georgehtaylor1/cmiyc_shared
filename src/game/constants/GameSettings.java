@@ -32,7 +32,8 @@ public class GameSettings {
 	public static class Arena {
 		public static Dimension size = new Dimension(800, 450);
 		public static Dimension outerSize = new Dimension(840, 490);
-
+		public static double timeLimit = 300; // in seconds
+		
 		public Color color = Colors.arena;
 		public Color outerColor = Colors.outerArena;
 	}
@@ -59,8 +60,11 @@ public class GameSettings {
 		public static final double catchRadius = 15;
 		public static final double lightRadius = 70;
 		public static final double lightArcPercentage = 13;
+		
 		public static final double fullBattery = 1;
 		public static final double noBattery = 0;
+		public static final double chargeValue = 0.005;
+		public static final double drainValue = 0.001;
 		
 		public final Color aliveColor = Colors.activeSecurity;
 		public final Color stuckColor = Colors.stuckSecurity;
@@ -86,6 +90,19 @@ public class GameSettings {
 
 		public final Color color = Colors.treasure;
 		public final Color shadowColor = Colors.treasureShadow;
+	}
+	
+	/**
+	 * Represents how players will earn points
+	 */
+	public static final class Score {
+		public static final double treasureScore = 100;
+		
+		public static final double thiefCaptureScore = 100;
+		public static final double scorePerSecond = 1;
+		
+		
+		
 	}
 
 }
