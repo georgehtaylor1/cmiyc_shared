@@ -23,7 +23,6 @@ public class Player implements Serializable {
 	public GameMode mode;
 
 	public PlayerState state;
-	public String dragging;
 
 	public double volume;
 
@@ -43,6 +42,7 @@ public class Player implements Serializable {
 		this.position = new Position();
 		this.volume = 1.0;
 		this.faction = GameSettings.Player.defaultFaction;
+		this.state = PlayerState.NORMAL;
 
 		this.mode = GameSettings.Player.defaultDesiredMode;
 	}

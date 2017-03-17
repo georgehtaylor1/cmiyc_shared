@@ -32,8 +32,8 @@ public class GameSettings {
 	public static class Arena {
 		public static Dimension size = new Dimension(800, 450);
 		public static Dimension outerSize = new Dimension(840, 490);
+		public static Dimension secHomeSize = new Dimension(80,80);
 		public static double timeLimit = 300; // in seconds
-		
 		public Color color = Colors.arena;
 		public Color outerColor = Colors.outerArena;
 	}
