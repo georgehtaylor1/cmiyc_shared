@@ -11,7 +11,7 @@ public class Commands {
     public static enum Action {
 
         // Client -> Server
-        UPDATE_USERNAME, START_DRAG, STOP_DRAG, UPDATE_CLIENT_STATE, KILL_CONNECTION,
+        UPDATE_USERNAME, UPDATE_CLIENT_STATE, KILL_CONNECTION,
 
         // Server -> Client
         SUCCESSFULL_CONNECTION, INIT_GAME, UPDATE_ID,
