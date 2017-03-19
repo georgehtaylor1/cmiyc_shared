@@ -25,6 +25,9 @@ public class Player implements Serializable {
 	public PlayerState state;
 
 	public double volume;
+	
+	// Remove this many points from the thief score if player is caught
+	public int treasureScore;
 
 	/**
 	 * Create a new player with the specified client ID
@@ -43,6 +46,7 @@ public class Player implements Serializable {
 		this.volume = 1.0;
 		this.faction = GameSettings.Player.defaultFaction;
 		this.state = PlayerState.NORMAL;
+		this.treasureScore = 0;
 
 		this.mode = GameSettings.Player.defaultDesiredMode;
 	}
