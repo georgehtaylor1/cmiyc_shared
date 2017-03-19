@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import constants.Colors;
 import game.Faction;
 import game.GameMode;
+import game.util.Position;
 
 /**
  * @author Denis Makula Class full of constants to be used by the game
@@ -33,6 +34,7 @@ public class GameSettings {
 		public static Dimension size = new Dimension(800, 450);
 		public static Dimension outerSize = new Dimension(840, 490);
 		public static Dimension secHomeSize = new Dimension(80,80);
+		public static Position exit = new Position(800,200);
 		public static double timeLimit = 300; // in seconds
 		public Color color = Colors.arena;
 		public Color outerColor = Colors.outerArena;

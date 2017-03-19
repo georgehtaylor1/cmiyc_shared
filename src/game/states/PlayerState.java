@@ -4,5 +4,5 @@ package game.states;
  * Represents the current state of the player
  */
 public enum PlayerState {
-    NORMAL, CAUGHT, STUCK;
+    NORMAL, CAUGHT, STUCK, ESCAPED;
 }
