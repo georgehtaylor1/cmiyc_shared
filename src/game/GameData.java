@@ -19,6 +19,9 @@ public class GameData {
     public ArrayList<Obstacle> obstacles;
     public ArrayList<Camera> cameras;
     
+    public double secScore;
+    public double thiefScore;
+    
     public Random rand;
 
     /**
