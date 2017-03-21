@@ -39,7 +39,7 @@ public class Player implements Serializable {
 		this.clientID = _clientID;
 
 		this.speed = 1.5;
-		this.battery = 1;
+		this.battery = 1.5; // TODO: [ 1.5, 1.0 ] flashlight at full power; ( 1.0 - 0 ] flashlight at ( maxFlashLightRadius - minFlashLightRadius ) * this.battery
 		this.cameras = 2;
 		this.direction = 0.0;
 		this.position = new Position();
