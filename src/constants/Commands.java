@@ -11,7 +11,7 @@ public class Commands {
     public static enum Action {
 
         // Client -> Server
-        UPDATE_USERNAME, UPDATE_CLIENT_STATE, KILL_CONNECTION,
+        INIT_CLIENT, UPDATE_CLIENT_STATE, KILL_CONNECTION,
 
         // Server -> Client
         SUCCESSFULL_CONNECTION, INIT_GAME, UPDATE_ID,
@@ -27,7 +27,7 @@ public class Commands {
     public static enum Key {
 
         // Client -> Server
-        DIRECTION, POSITION, CAMERA, DRAGGED_PLAYER, CLIENT_STATE,
+        DIRECTION, POSITION, BATTERY, CAMERA, DRAGGED_PLAYER, CLIENT_STATE, CLIENT_USERNAME,
 
         // Server -> Client
         OBSTACLES, TREASURES, PLAYER_POSITIONS, PLAYER_DIRECTIONS,
