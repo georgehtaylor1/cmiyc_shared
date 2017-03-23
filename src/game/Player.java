@@ -24,8 +24,6 @@ public class Player implements Serializable {
 
 	public PlayerState state;
 
-	public double volume;
-	
 	// Remove this many points from the thief score if player is caught
 	public int treasureScore;
 
@@ -43,7 +41,6 @@ public class Player implements Serializable {
 		this.cameras = 2;
 		this.direction = 0.0;
 		this.position = new Position();
-		this.volume = 1.0;
 		this.faction = GameSettings.Player.defaultFaction;
 		this.state = PlayerState.NORMAL;
 		this.treasureScore = 0;
