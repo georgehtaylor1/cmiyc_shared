@@ -1,6 +1,13 @@
 package game.util;
 
-public class Movement {
+import java.io.Serializable;
+
+public class Movement implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -500213403997987660L;
 
 	public String clientID;
 	

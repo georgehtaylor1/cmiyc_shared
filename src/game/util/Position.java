@@ -1,5 +1,7 @@
 package game.util;
 
+import java.io.Serializable;
+
 import game.constants.GameSettings;
 import util.Maths;
 
@@ -7,8 +9,12 @@ import util.Maths;
  * @author Denis Makula Position Class (this is just an x/y wrapper, which should be translated into Point or Point2D after it has been transfered, unpacked and
  *         unserialised)
  **/
-public class Position {
+public class Position implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6384488353385200357L;
 	public double x = 0;
 	public double y = 0;
 
