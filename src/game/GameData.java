@@ -1,12 +1,11 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+import game.constants.GameSettings;
 import game.states.GameState;
 
 public class GameData {
@@ -34,6 +33,7 @@ public class GameData {
         this.treasures = new ArrayList<Treasure>();
         this.obstacles = new ArrayList<Obstacle>();
         this.cameras = new ArrayList<Camera>();
+        this.mode = GameSettings.Player.defaultDesiredMode;
         
         this.rand = new Random();
     }
@@ -46,7 +46,7 @@ public class GameData {
      */
     public boolean fits(Player _player) {
 
-        if (this.state != GameState.PREGAME) { return false; }
+        //if (this.state != GameState.PREGAME) { return false; }
 
         Player player = _player;
 
