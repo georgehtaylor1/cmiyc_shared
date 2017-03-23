@@ -115,7 +115,7 @@ public class Maths {
                 if (dist(myPos,
                         p.position) < GameSettings.Player.listeningRadius)
                     totalVolume += getLeftVolumeProportion(myPos, p.position)
-                    /* * p.volume */;
+                            * p.volume;
             }
         }
         return totalVolume;
@@ -143,7 +143,7 @@ public class Maths {
                 if (dist(myPos,
                         p.position) < GameSettings.Player.listeningRadius)
                     totalVolume += getRightVolumeProportion(myPos, p.position)
-                    /* * p.volume */;
+                            * p.volume;
             }
         }
         return totalVolume;
