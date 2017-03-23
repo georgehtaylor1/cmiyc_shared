@@ -10,164 +10,175 @@ import game.util.Position;
 
 /**
  * A class to contain mathematical helper functions
- * 
+ *
  * @author george
  *
  */
 public class Maths {
 
-	/**
-	 * Get the Euclidian distance between two objects
-	 * 
-	 * @param p1
-	 *            The first point
-	 * @param p2
-	 *            The second point
-	 * @return The distance between the points
-	 */
-	public static double dist(Position p1, Position p2) {
-		return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-	}
+    /**
+     * Get the Euclidian distance between two objects
+     *
+     * @param p1
+     *            The first point
+     * @param p2
+     *            The second point
+     * @return The distance between the points
+     */
+    public static double dist(Position p1, Position p2) {
+        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+    }
 
-	/**
-	 * Get the angle between two points
-	 * 
-	 * @param p1
-	 *            The first point
-	 * @param p2
-	 *            The second point
-	 * @return The angle between the points
-	 */
-	public static double angle(Position p1, Position p2) {
-		return angle(p1.x, p1.y, p2.x, p2.y);
-	}
+    /**
+     * Get the angle between two points
+     *
+     * @param p1
+     *            The first point
+     * @param p2
+     *            The second point
+     * @return The angle between the points
+     */
+    public static double angle(Position p1, Position p2) {
+        return angle(p1.x, p1.y, p2.x, p2.y);
+    }
 
-	/**
-	 * Method to get the angle between two points
-	 * 
-	 * @param p1X
-	 *            position 1 X
-	 * @param p1Y
-	 *            position 1 Y
-	 * @param p2X
-	 *            position 2 X
-	 * @param p2Y
-	 *            position 2 Y
-	 * @return Angle in radians
-	 */
-	public static double angle(double p1X, double p1Y, double p2X, double p2Y) {
-		return Math.atan2(p2Y - p1Y, p2X - p1X);
-	}
+    /**
+     * Method to get the angle between two points
+     *
+     * @param p1X
+     *            position 1 X
+     * @param p1Y
+     *            position 1 Y
+     * @param p2X
+     *            position 2 X
+     * @param p2Y
+     *            position 2 Y
+     * @return Angle in radians
+     */
+    public static double angle(double p1X, double p1Y, double p2X, double p2Y) {
+        return Math.atan2(p2Y - p1Y, p2X - p1X);
+    }
 
-	/**
-	 * Get the proportion of the volume of sound in the left ear
-	 * 
-	 * @param myPos
-	 *            The position of the player
-	 * @param soundPos
-	 *            The position of the sound
-	 * @return The proportion of the volume of the sound in the left ear, between 0 and 1
-	 */
-	public static double getLeftVolumeProportion(Position myPos, Position soundPos) {
-		double listeningRadius = GameSettings.Player.listeningRadius;
-		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
-				* (-0.5 * (Math.sin(angle(myPos, soundPos)) + 1));
-	}
+    /**
+     * Get the proportion of the volume of sound in the left ear
+     *
+     * @param myPos
+     *            The position of the player
+     * @param soundPos
+     *            The position of the sound
+     * @return The proportion of the volume of the sound in the left ear,
+     *         between 0 and 1
+     */
+    public static double getLeftVolumeProportion(Position myPos,
+            Position soundPos) {
+        double listeningRadius = GameSettings.Player.listeningRadius;
+        return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
+                * (-0.5 * (Math.sin(angle(myPos, soundPos)) + 1));
+    }
 
-	/**
-	 * Get the proportion of the volume of sound in the right ear
-	 * 
-	 * @param myPos
-	 *            The position of the player
-	 * @param soundPos
-	 *            The position of the sound
-	 * @return The proportion of the volume of the sound in the right ear, between 0 and 1
-	 */
-	public static double getRightVolumeProportion(Position myPos, Position soundPos) {
-		double listeningRadius = GameSettings.Player.listeningRadius;
-		return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
-				* (0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
-	}
+    /**
+     * Get the proportion of the volume of sound in the right ear
+     *
+     * @param myPos
+     *            The position of the player
+     * @param soundPos
+     *            The position of the sound
+     * @return The proportion of the volume of the sound in the right ear,
+     *         between 0 and 1
+     */
+    public static double getRightVolumeProportion(Position myPos,
+            Position soundPos) {
+        double listeningRadius = GameSettings.Player.listeningRadius;
+        return ((listeningRadius - dist(myPos, soundPos)) / listeningRadius)
+                * (0.5 * (Math.cos(angle(myPos, soundPos)) + 1));
+    }
 
-	/**
-	 * Get the volume in the left ear
-	 * 
-	 * @param myPos
-	 *            The position of the player to whom the volume applies
-	 * @param myName
-	 *            The name of the player so that it can be ignored
-	 * @param players
-	 *            The rest of the players in the game
-	 * @return The calculated volume in the left ear
-	 */
-	public static double getLeftVolume(Position myPos, String myName, ConcurrentHashMap<String, Player> players) {
-		double totalVolume = 0;
-		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
-		while (i.hasNext()) {
-			Entry<String, Player> e = i.next();
-			if (e.getKey() != myName) {
-				Player p = e.getValue();
-				if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
-					totalVolume += getLeftVolumeProportion(myPos, p.position) * p.volume;
-			}
-		}
-		return totalVolume;
-	}
+    /**
+     * Get the volume in the left ear
+     *
+     * @param myPos
+     *            The position of the player to whom the volume applies
+     * @param myName
+     *            The name of the player so that it can be ignored
+     * @param players
+     *            The rest of the players in the game
+     * @return The calculated volume in the left ear
+     */
+    public static double getLeftVolume(Position myPos, String myName,
+            ConcurrentHashMap<String, Player> players) {
+        double totalVolume = 0;
+        Iterator<Entry<String, Player>> i = players.entrySet().iterator();
+        while (i.hasNext()) {
+            Entry<String, Player> e = i.next();
+            if (e.getKey() != myName) {
+                Player p = e.getValue();
+                if (dist(myPos,
+                        p.position) < GameSettings.Player.listeningRadius)
+                    totalVolume += getLeftVolumeProportion(myPos, p.position)
+                            * p.volume;
+            }
+        }
+        return totalVolume;
+    }
 
-	/**
-	 * Get the volume in the right ear
-	 * 
-	 * @param myPos
-	 *            The position of the player to whom the volume applies
-	 * @param myName
-	 *            The name of the player so that it can be ignored
-	 * @param players
-	 *            The rest of the players in the game
-	 * @return The calculated volume in the right ear
-	 */
-	public static double getRightVolume(Position myPos, String myName, ConcurrentHashMap<String, Player> players) {
-		double totalVolume = 0;
-		Iterator<Entry<String, Player>> i = players.entrySet().iterator();
-		while (i.hasNext()) {
-			Entry<String, Player> e = i.next();
-			if (e.getKey() != myName) {
-				Player p = e.getValue();
-				if (dist(myPos, p.position) < GameSettings.Player.listeningRadius)
-					totalVolume += getRightVolumeProportion(myPos, p.position) * p.volume;
-			}
-		}
-		return totalVolume;
-	}
+    /**
+     * Get the volume in the right ear
+     *
+     * @param myPos
+     *            The position of the player to whom the volume applies
+     * @param myName
+     *            The name of the player so that it can be ignored
+     * @param players
+     *            The rest of the players in the game
+     * @return The calculated volume in the right ear
+     */
+    public static double getRightVolume(Position myPos, String myName,
+            ConcurrentHashMap<String, Player> players) {
+        double totalVolume = 0;
+        Iterator<Entry<String, Player>> i = players.entrySet().iterator();
+        while (i.hasNext()) {
+            Entry<String, Player> e = i.next();
+            if (e.getKey() != myName) {
+                Player p = e.getValue();
+                if (dist(myPos,
+                        p.position) < GameSettings.Player.listeningRadius)
+                    totalVolume += getRightVolumeProportion(myPos, p.position)
+                            * p.volume;
+            }
+        }
+        return totalVolume;
+    }
 
-	/**
-	 * Get the position dictated by the projection of the given position over distance d at angle a
-	 * 
-	 * @param p
-	 *            The position to be projected from
-	 * @param d
-	 *            The distance of the projection
-	 * @param a
-	 *            The angle of the projection
-	 * @return The position of the projected image
-	 */
-	public static Position project(Position p, double d, double a) {
-		return new Position(p.x + (Math.cos(a) * d), p.y + (Math.sin(a) * d));
-	}
+    /**
+     * Get the position dictated by the projection of the given position over
+     * distance d at angle a
+     *
+     * @param p
+     *            The position to be projected from
+     * @param d
+     *            The distance of the projection
+     * @param a
+     *            The angle of the projection
+     * @return The position of the projected image
+     */
+    public static Position project(Position p, double d, double a) {
+        return new Position(p.x + (Math.cos(a) * d), p.y + (Math.sin(a) * d));
+    }
 
-	/**
-	 * Normalize an angle so that it is between -180 and 180
-	 * 
-	 * @param angle
-	 *            The angle to be normalized
-	 * @return The normalized angle
-	 */
-	public static double normalizeAngle(double angle) {
-		double newAngle = angle;
-		while (newAngle <= -Math.PI)
-			newAngle += 2 * Math.PI;
-		while (newAngle > Math.PI)
-			newAngle -= 2 * Math.PI;
-		return newAngle;
-	}
+    /**
+     * Normalize an angle so that it is between -180 and 180
+     *
+     * @param angle
+     *            The angle to be normalized
+     * @return The normalized angle
+     */
+    public static double normalizeAngle(double angle) {
+        double newAngle = angle;
+        while (newAngle <= -Math.PI)
+            newAngle += 2 * Math.PI;
+        while (newAngle > Math.PI)
+            newAngle -= 2 * Math.PI;
+        return newAngle;
+    }
 
 }
