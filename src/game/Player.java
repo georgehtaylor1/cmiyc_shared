@@ -15,6 +15,7 @@ public class Player implements Serializable {
 	public double speed;
 	public double battery;
 	public int cameras;
+	public double volume;
 	
 	public Position position;
 	public double direction;
@@ -26,6 +27,7 @@ public class Player implements Serializable {
 
 	// Remove this many points from the thief score if player is caught
 	public int treasureScore;
+
 
 	/**
 	 * Create a new player with the specified client ID
@@ -40,6 +42,7 @@ public class Player implements Serializable {
 		this.battery = 1.5; // TODO: [ 1.5, 1.0 ] flashlight at full power; ( 1.0 - 0 ] flashlight at ( maxFlashLightRadius - minFlashLightRadius ) * this.battery
 		this.cameras = 2;
 		this.direction = 0.0;
+		this.volume = 1.0;
 		this.position = new Position();
 		this.faction = GameSettings.Player.defaultFaction;
 		this.state = PlayerState.NORMAL;
